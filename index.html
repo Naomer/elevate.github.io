@@ -4,18 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ᴇʟᴇᴠʌᴛᴇ</title>
-  <!-- Correct Font Awesome Link -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-pV7B+o3tk0R+3++vC1N0zq3qXh3H2FZfiKzEUPnMX5q2VbsZwD6hNhR+w1t1C3HB4Ekw0jvCE2+6B1jX3V2Bgw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
     body { background-color: #ffffff; color: #111; line-height: 1.6; }
 
-    header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: #ffffff; border-bottom: 2px solid #eee; flex-wrap: wrap; }
+    /* Header */
+    header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: #ffffff; border-bottom: 2px solid #eee; position: relative; }
     header h1 { font-size: 2rem; color: #000; letter-spacing: 1px; }
-    nav { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+
+    /* Nav */
+    nav { display: flex; gap: 20px; align-items: center; }
     nav a { text-decoration: none; color: #111; font-weight: normal; font-size: 0.9rem; transition: color 0.3s; }
     nav a:hover { color: #ff3b3b; }
 
+    /* Hamburger menu for mobile */
+    .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; border: 2px dashed #111; padding: 6px 8px; border-radius: 4px; }
+
+    /* Center section */
     .center-section { padding: 80px 20px; text-align: center; background: linear-gradient(135deg, #ff3b3b, #ff6b6b); color: #fff; }
     .center-section h2 { font-size: 2.5rem; margin-bottom: 20px; }
     .center-section p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; }
@@ -29,29 +36,29 @@
     .service:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
     .service h3 { color: #111; margin-bottom: 10px; }
 
-    footer { background-color: #111; color: #fff; padding: 30px 20px; text-align: center; }
-    footer a { color: #ff3b3b; text-decoration: none; margin: 0 10px; }
-    footer a:hover { text-decoration: underline; }
-
-    .social-icons { display: flex; justify-content: center; gap: 20px; font-size: 1.5rem; margin-top: 20px; }
-    .social-icons a { color: #fff; transition: transform 0.3s, color 0.3s; }
-    .social-icons a:hover { color: #ff3b3b; transform: scale(1.2); }
-
+    /* Form */
     form { display: flex; flex-direction: column; max-width: 400px; margin: 0 auto; }
     input, textarea { padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem; width: 100%; }
     button { padding: 12px; background-color: #ff3b3b; color: #fff; border: none; border-radius: 5px; cursor: pointer; font-size: 1rem; margin-top: 10px; transition: background 0.3s; width: 100%; }
     button:hover { background-color: #e03232; }
 
+    /* Social icons */
+    .social-icons { display: flex; justify-content: center; gap: 20px; font-size: 1.5rem; margin-top: 20px; }
+    .social-icons a { color: #111; transition: transform 0.3s, color 0.3s; }
+    .social-icons a:hover { color: #ff3b3b; transform: scale(1.2); }
+
+    /* Footer */
+    footer { background-color: #111; color: #fff; padding: 30px 20px; text-align: center; }
+    footer a { color: #ff3b3b; text-decoration: none; margin: 0 10px; }
+    footer a:hover { text-decoration: underline; }
+
     /* Responsive */
-    @media (max-width: 1024px) {
-      header { padding: 20px; }
-      .services { gap: 20px; }
-    }
     @media (max-width: 768px) {
-      header { flex-direction: column; align-items: flex-start; }
-      nav { flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 10px; }
-      .center-section h2 { font-size: 2rem; }
-      .center-section p { font-size: 1rem; }
+      nav { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: #fff; border-top: 1px solid #eee; padding: 10px 0; }
+      nav.show { display: flex; }
+      nav a { padding: 10px 20px; width: 100%; border-bottom: 1px solid #eee; }
+      .menu-toggle { display: block; }
+      header { flex-wrap: wrap; }
     }
     @media (max-width: 480px) {
       header h1 { font-size: 1.5rem; }
@@ -68,7 +75,8 @@
 
   <header>
     <h1>ᴇʟᴇᴠʌᴛᴇ</h1>
-    <nav>
+    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+    <nav id="nav-links">
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#contact">Contact</a>
@@ -122,6 +130,13 @@
   <footer>
     <p>© 2025 ᴇʟᴇᴠʌᴛᴇ. All rights reserved.</p>
   </footer>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('nav-links');
+      nav.classList.toggle('show');
+    }
+  </script>
 
 </body>
 </html>
