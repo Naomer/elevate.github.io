@@ -205,29 +205,84 @@
     </div>
   </section>
 
-
-  <!-- Footer -->
+<!-- Footer using React-like icons structure -->
   <footer class="bg-white border-t border-gray-200">
     <div class="max-w-7xl mx-auto px-4 py-10">
-      <div class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-xl bg-black flex items-center justify-center text-white font-bold">E</div>
-        <span class="text-lg font-bold tracking-tight">Elevate</span>
-      </div>
-      <p class="text-sm text-gray-600 mt-3 max-w-sm">
-        A clean, developer-first template inspired by Meta for Developers.
-      </p>
-      <div class="flex items-center gap-3 mt-4">
+      <div class="grid md:grid-cols-5 gap-8">
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-xl bg-black flex items-center justify-center text-white font-bold">D</div>
+            <span class="text-lg font-bold tracking-tight">DevPortal</span>
+          </div>
+          <p class="text-sm text-gray-600 mt-3 max-w-sm">A clean, developer-first template inspired by Meta for Developers. Replace names, links, and content with your own.</p>
+          <div class="flex items-center gap-3 mt-4">
         <a href="#"><i data-lucide="twitter" class="w-4 h-4"></i></a>
         <a href="#"><i data-lucide="facebook" class="w-4 h-4"></i></a>
         <a href="#"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
         <a href="#"><i data-lucide="youtube" class="w-4 h-4"></i></a>
         <a href="#"><i data-lucide="github" class="w-4 h-4"></i></a>
       </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-8 md:col-span-3">
+          <div class="space-y-3">
+            <h4 class="text-sm font-semibold">Build with Meta</h4>
+            <div class="flex flex-col gap-2">
+              <a href="#" class="text-gray-600 hover:text-gray-900">AI</a>
+              <a href="#" class="text-gray-600 hover:text-gray-900">Meta Horizon OS</a>
+              <a href="#" class="text-gray-600 hover:text-gray-900">Social technologies</a>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <h4 class="text-sm font-semibold">News & Docs</h4>
+            <div class="flex flex-col gap-2">
+              <a href="#" class="text-gray-600 hover:text-gray-900">Blog</a>
+              <a href="#" class="text-gray-600 hover:text-gray-900">Success stories</a>
+              <a href="#" class="text-gray-600 hover:text-gray-900">Docs</a>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <h4 class="text-sm font-semibold">Support</h4>
+            <div class="flex flex-col gap-2">
+              <a href="#" class="text-gray-600 hover:text-gray-900">Developer support</a>
+              <a href="#" class="text-gray-600 hover:text-gray-900">Bug tool</a>
+              <a href="#" class="text-gray-600 hover:text-gray-900">Platform status</a>
+              <a href="#" class="text-gray-600 hover:text-gray-900">Community forum</a>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <h4 class="text-sm font-semibold">Policies</h4>
+            <div class="flex flex-col gap-2">
+              <a href="#" class="text-gray-600 hover:text-gray-900">Responsible initiatives</a>
+              <a href="#" class="text-gray-600 hover:text-gray-900">Platform terms</a>
+              <a href="#" class="text-gray-600 hover:text-gray-900">Developer policies</a>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <h4 class="text-sm font-semibold">Company</h4>
+            <div class="flex flex-col gap-2">
+              <a href="#" class="text-gray-600 hover:text-gray-900">About</a>
+              <a href="#" class="text-gray-600 hover:text-gray-900">Careers</a>
+              <a href="#" class="text-gray-600 hover:text-gray-900">Contact</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-200 mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-gray-600">
+        <div class="flex items-center gap-2">
+          <span>© 2025 DevPortal</span>
+          <span>•</span>
+          <a href="#" class="hover:text-gray-900">All rights reserved</a>
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="#" class="hover:text-gray-900">Privacy</a>
+          <a href="#" class="hover:text-gray-900">Terms</a>
+          <a href="#" class="hover:text-gray-900">Cookies</a>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <script>
-    lucide.createIcons();
-  </script>
 </body>
 </html>
