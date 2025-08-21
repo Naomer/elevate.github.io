@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elevate Dev Portal</title>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="min-h-screen bg-gray-50 text-gray-900">
+
+  <!-- Top Announcement Bar -->
+  <div class="w-full bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white text-center text-sm py-2">
+    <p class="px-4">
+      New: Platform Status dashboard redesign.
+      <a href="#" class="underline font-semibold">Check it out</a>
+    </p>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-3">
+          <button class="md:hidden p-2 rounded-xl border border-gray-200" aria-label="Open menu">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+          <a href="#" class="flex items-center gap-2">
+            <span class="text-lg font-bold tracking-tight">ᴇʟᴇᴠʌᴛᴇ</span>
+          </a>
+        </div>
+
+        <nav class="hidden md:flex items-center gap-6">
+          <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-900">Products</a>
+          <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-900">Docs</a>
+          <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-900">Tools</a>
+          <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-900">Support</a>
+          <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-900">Blog</a>
+          <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-900">Status</a>
+        </nav>
+
+        <div class="hidden md:flex items-center gap-3">
+          <div class="relative">
+            <input class="pl-9 pr-3 py-2 rounded-xl border border-gray-200 bg-white text-sm w-64 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                   placeholder="Search docs, APIs, tools" />
+            <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"></i>
+          </div>
+          <button class="px-4 py-2 rounded-2xl bg-white border border-gray-200 text-sm font-semibold hover:bg-gray-50 shadow-sm">
+            Sign in
+          </button>
+          <button class="px-4 py-2 rounded-2xl bg-black text-white text-sm font-semibold hover:opacity-90 shadow">
+            Get started
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 py-16">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
+            Build, grow, and monetize with our platform
+          </h1>
+          <p class="text-lg text-gray-600 mt-4 max-w-xl">
+            Access powerful APIs, SDKs, and tools to bring social features, messaging, identity, and immersive experiences to your apps.
+          </p>
+          <div class="flex items-center gap-3 mt-6">
+            <button class="px-4 py-2 rounded-2xl bg-black text-white text-sm font-semibold hover:opacity-90 shadow">
+              Browse products
+            </button>
+            <button class="px-4 py-2 rounded-2xl bg-white border border-gray-200 text-sm font-semibold hover:bg-gray-50 shadow-sm">
+              Read the docs
+            </button>
+          </div>
+          <div class="flex items-center gap-6 mt-8 text-sm text-gray-600">
+            <div class="flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4"></i> Privacy-first</div>
+            <div class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4"></i> Reliable APIs</div>
+            <div class="flex items-center gap-2"><i data-lucide="server" class="w-4 h-4"></i> Status dashboard</div>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="aspect-[4/3] rounded-3xl bg-gradient-to-br from-gray-100 to-gray-200 border border-gray-200 shadow-inner"></div>
+          <div class="absolute -bottom-4 -right-4 bg-white border border-gray-200 rounded-2xl p-4 shadow-md flex items-center gap-3">
+            <div class="rounded-xl p-2 border border-gray-200"><i data-lucide="code-2" class="w-5 h-5"></i></div>
+            <div>
+              <div class="text-sm font-semibold">Graph API vX.Y</div>
+              <div class="text-xs text-gray-600">Now with improved webhooks</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- (continue converting your other sections the same way...) -->
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 py-10">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-xl bg-black flex items-center justify-center text-white font-bold">E</div>
+        <span class="text-lg font-bold tracking-tight">Elevate</span>
+      </div>
+      <p class="text-sm text-gray-600 mt-3 max-w-sm">
+        A clean, developer-first template inspired by Meta for Developers.
+      </p>
+      <div class="flex items-center gap-3 mt-4">
+        <a href="#"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+        <a href="#"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+        <a href="#"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+        <a href="#"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+        <a href="#"><i data-lucide="github" class="w-4 h-4"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
