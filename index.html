@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Elevate</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DevPortal — Elevate clone</title>
 
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
-  
-  <!-- Tailwind CSS CDN -->
+
+  <!-- Tailwind CDN (keeps the exact same classes/appearance) -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons CDN -->
+
+  <!-- Lucide icons (same icons as lucide-react used in your component) -->
   <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* tiny helper to allow the group-hover gap animation for CTA icons */
+    .group-hover\:gap-2:hover { gap: .5rem; }
+  </style>
 </head>
 <body class="min-h-screen bg-gray-50 text-gray-900">
 
   <!-- Top Announcement Bar -->
   <div class="w-full bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white text-center text-sm py-2">
-    <p class="px-4">
-      New: Platform Status dashboard redesign.
-      <a href="#" class="underline font-semibold">Check it out</a>
-    </p>
+    <p class="px-4">New: Platform Status dashboard redesign. <a href="#" class="underline font-semibold">Check it out</a></p>
   </div>
 
   <!-- Header -->
@@ -30,7 +33,7 @@
     <div class="max-w-7xl mx-auto px-4">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center gap-3">
-          <button class="md:hidden p-2 rounded-xl border border-gray-200" aria-label="Open menu">
+          <button id="open-mobile" class="md:hidden p-2 rounded-xl border border-gray-200" aria-label="Open menu">
             <i data-lucide="menu" class="w-5 h-5"></i>
           </button>
           <a href="#" class="flex items-center gap-2">
@@ -39,12 +42,12 @@
         </div>
 
         <nav class="hidden md:flex items-center gap-6">
-          <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-900">Products</a>
-          <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-900">Docs</a>
-          <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-900">Tools</a>
-          <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-900">Support</a>
-          <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-900">Blog</a>
-          <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-900">Status</a>
+          <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">Products</a>
+          <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">Docs</a>
+          <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">Tools</a>
+          <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">Support</a>
+          <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">Blog</a>
+          <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">Status</a>
         </nav>
 
         <div class="hidden md:flex items-center gap-3">
@@ -62,208 +65,418 @@
         </div>
       </div>
     </div>
-  </header>
 
-  <!-- Hero -->
-  <section class="relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 py-16">
-      <div class="grid md:grid-cols-2 gap-10 items-center">
-        <div>
-          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
-            Build, grow, and monetize with our platform
-          </h1>
-          <p class="text-lg text-gray-600 mt-4 max-w-xl">
-            Access powerful Cloud AI, SaaS, and tools to bring social features, storing, identity, and immersive experiences to your startups.
-          </p>
-          <div class="flex items-center gap-3 mt-6">
-            <button class="px-4 py-2 rounded-2xl bg-black text-white text-sm font-semibold hover:opacity-90 shadow">
-              Browse products
-            </button>
-            <button class="px-4 py-2 rounded-2xl bg-white border border-gray-200 text-sm font-semibold hover:bg-gray-50 shadow-sm">
-              Read the docs
-            </button>
+    <!-- Mobile panel (hidden by default) -->
+    <div id="mobile-panel" class="md:hidden border-t border-gray-200 hidden">
+      <div class="max-w-7xl mx-auto px-4 py-4">
+        <div class="flex items-center justify-between mb-4">
+          <span class="font-semibold">Menu</span>
+          <button id="close-mobile" class="p-2 rounded-xl border border-gray-200" aria-label="Close menu">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <div class="grid gap-3">
+          <a href="#" class="px-3 py-2 rounded-xl border border-gray-200 bg-white">Products</a>
+          <a href="#" class="px-3 py-2 rounded-xl border border-gray-200 bg-white">Docs</a>
+          <a href="#" class="px-3 py-2 rounded-xl border border-gray-200 bg-white">Tools</a>
+          <a href="#" class="px-3 py-2 rounded-xl border border-gray-200 bg-white">Support</a>
+          <a href="#" class="px-3 py-2 rounded-xl border border-gray-200 bg-white">Blog</a>
+          <a href="#" class="px-3 py-2 rounded-xl border border-gray-200 bg-white">Status</a>
+
+          <div class="flex items-center gap-2">
+            <input class="flex-1 pl-9 pr-3 py-2 rounded-xl border border-gray-200 bg-white text-sm" placeholder="Search docs, APIs, tools" />
+            <i data-lucide="search" class="w-4 h-4 -ml-7 text-gray-500"></i>
           </div>
-          <div class="flex items-center gap-6 mt-8 text-sm text-gray-600">
-            <div class="flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4"></i> Privacy-first</div>
-            <div class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4"></i> Reliable APIs</div>
-            <div class="flex items-center gap-2"><i data-lucide="server" class="w-4 h-4"></i> Status dashboard</div>
+
+          <div class="flex items-center gap-2">
+            <button class="px-4 py-2 rounded-2xl bg-white border border-gray-200 text-sm font-semibold hover:bg-gray-50 shadow-sm">Sign in</button>
+            <button class="px-4 py-2 rounded-2xl bg-black text-white text-sm font-semibold hover:opacity-90 shadow">Get started</button>
           </div>
         </div>
-        <div class="relative">
-          <div class="aspect-[4/3] rounded-3xl bg-gradient-to-br from-gray-100 to-gray-200 border border-gray-200 shadow-inner"></div>
-          <div class="absolute -bottom-4 -right-4 bg-white border border-gray-200 rounded-2xl p-4 shadow-md flex items-center gap-3">
-            <div class="rounded-xl p-2 border border-gray-200"><i data-lucide="code-2" class="w-5 h-5"></i></div>
-            <div>
-              <div class="text-sm font-semibold">Kloi AI v0.1.1</div>
-              <div class="text-xs text-gray-600">Now with improved webhooks</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main>
+    <!-- Hero -->
+    <section class="relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 py-16">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <h1 class="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">Build, grow, and monetize with our platform</h1>
+            <p class="text-lg text-gray-600 mt-4 max-w-xl">Access powerful APIs, SDKs, and tools to bring social features, messaging, identity, and immersive experiences to your apps.</p>
+            <div class="flex items-center gap-3 mt-6">
+              <button class="px-4 py-2 rounded-2xl bg-black text-white text-sm font-semibold hover:opacity-90 shadow">Browse products</button>
+              <button class="px-4 py-2 rounded-2xl bg-white border border-gray-200 text-sm font-semibold hover:bg-gray-50 shadow-sm">Read the docs</button>
+            </div>
+
+            <div class="flex items-center gap-6 mt-8 text-sm text-gray-600">
+              <div class="flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4"></i> Privacy-first</div>
+              <div class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4"></i> Reliable APIs</div>
+              <div class="flex items-center gap-2"><i data-lucide="server" class="w-4 h-4"></i> Status dashboard</div>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div class="aspect-[4/3] rounded-3xl bg-gradient-to-br from-gray-100 to-gray-200 border border-gray-200 shadow-inner"></div>
+
+            <div class="absolute -bottom-4 -right-4 bg-white border border-gray-200 rounded-2xl p-4 shadow-md flex items-center gap-3">
+              <div class="rounded-xl p-2 border border-gray-200"><i data-lucide="code-2" class="w-5 h-5"></i></div>
+              <div>
+                <div class="text-sm font-semibold">Graph API vX.Y</div>
+                <div class="text-xs text-gray-600">Now with improved webhooks</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-   <!-- Products Section -->
-  <section class="bg-white border-t border-gray-200">
-    <div class="max-w-7xl mx-auto px-4 py-16">
-      <h2 class="text-2xl font-bold mb-8">Products</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="p-6 rounded-2xl border border-gray-200 bg-gray-50 hover:shadow-sm">
-          <i data-lucide="message-square" class="w-6 h-6 mb-4"></i>
-          <h3 class="font-semibold mb-2">Messaging API</h3>
-          <p class="text-sm text-gray-600">Integrate real-time chat and messaging into your apps with just a few lines of code.</p>
+    <!-- Products -->
+    <section class="py-10 border-t border-gray-200 bg-white">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex items-baseline justify-between">
+          <h2 class="text-2xl font-bold">Products</h2>
+          <a href="#" class="text-sm font-semibold flex items-center gap-1">See all <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
         </div>
-        <div class="p-6 rounded-2xl border border-gray-200 bg-gray-50 hover:shadow-sm">
-          <i data-lucide="users" class="w-6 h-6 mb-4"></i>
-          <h3 class="font-semibold mb-2">Identity</h3>
-          <p class="text-sm text-gray-600">Handle login, accounts, and profile management with secure identity services.</p>
-        </div>
-        <div class="p-6 rounded-2xl border border-gray-200 bg-gray-50 hover:shadow-sm">
-          <i data-lucide="globe" class="w-6 h-6 mb-4"></i>
-          <h3 class="font-semibold mb-2">Immersive APIs</h3>
-          <p class="text-sm text-gray-600">Build AR/VR experiences powered by advanced immersive SDKs.</p>
+
+        <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-5 mt-6">
+          <!-- Card 1 -->
+          <div class="group rounded-2xl border border-gray-200 p-5 hover:shadow-md transition-shadow bg-white">
+            <div class="flex items-center gap-3">
+              <div class="rounded-xl p-2 border border-gray-200"><i data-lucide="layers" class="w-5 h-5"></i></div>
+              <h3 class="text-base font-semibold">Login & Identity</h3>
+            </div>
+            <p class="text-sm text-gray-600 mt-3">Simplify sign-in and personalize experiences with secure OAuth flows.</p>
+            <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold mt-4 group-hover:gap-2 transition-all">Explore Facebook Login <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="group rounded-2xl border border-gray-200 p-5 hover:shadow-md transition-shadow bg-white">
+            <div class="flex items-center gap-3">
+              <div class="rounded-xl p-2 border border-gray-200"><i data-lucide="link-2" class="w-5 h-5"></i></div>
+              <h3 class="text-base font-semibold">Graph API</h3>
+            </div>
+            <p class="text-sm text-gray-600 mt-3">Access social graphs, pages, media, and insights with a unified API.</p>
+            <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold mt-4 group-hover:gap-2 transition-all">View Graph docs <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="group rounded-2xl border border-gray-200 p-5 hover:shadow-md transition-shadow bg-white">
+            <div class="flex items-center gap-3">
+              <div class="rounded-xl p-2 border border-gray-200"><i data-lucide="message-square" class="w-5 h-5"></i></div>
+              <h3 class="text-base font-semibold">Messaging</h3>
+            </div>
+            <p class="text-sm text-gray-600 mt-3">Build rich conversations with WhatsApp Business and Messenger.</p>
+            <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold mt-4 group-hover:gap-2 transition-all">Build messaging <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="group rounded-2xl border border-gray-200 p-5 hover:shadow-md transition-shadow bg-white">
+            <div class="flex items-center gap-3">
+              <div class="rounded-xl p-2 border border-gray-200"><i data-lucide="layout-grid" class="w-5 h-5"></i></div>
+              <h3 class="text-base font-semibold">Instagram APIs</h3>
+            </div>
+            <p class="text-sm text-gray-600 mt-3">Publish, moderate, and analyze Instagram content and conversations.</p>
+            <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold mt-4 group-hover:gap-2 transition-all">Use Instagram APIs <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="group rounded-2xl border border-gray-200 p-5 hover:shadow-md transition-shadow bg-white">
+            <div class="flex items-center gap-3">
+              <div class="rounded-xl p-2 border border-gray-200"><i data-lucide="cpu" class="w-5 h-5"></i></div>
+              <h3 class="text-base font-semibold">Spark AR & Effects</h3>
+            </div>
+            <p class="text-sm text-gray-600 mt-3">Create immersive AR effects to grow your audience.</p>
+            <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold mt-4 group-hover:gap-2 transition-all">Start with Spark AR <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="group rounded-2xl border border-gray-200 p-5 hover:shadow-md transition-shadow bg-white">
+            <div class="flex items-center gap-3">
+              <div class="rounded-xl p-2 border border-gray-200"><i data-lucide="server" class="w-5 h-5"></i></div>
+              <h3 class="text-base font-semibold">Webhooks & Events</h3>
+            </div>
+            <p class="text-sm text-gray-600 mt-3">Subscribe to real-time updates for pages, apps, and messages.</p>
+            <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold mt-4 group-hover:gap-2 transition-all">Configure webhooks <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          </div>
+
+          <!-- Card 7 -->
+          <div class="group rounded-2xl border border-gray-200 p-5 hover:shadow-md transition-shadow bg-white">
+            <div class="flex items-center gap-3">
+              <div class="rounded-xl p-2 border border-gray-200"><i data-lucide="wrench" class="w-5 h-5"></i></div>
+              <h3 class="text-base font-semibold">SDKs & Tools</h3>
+            </div>
+            <p class="text-sm text-gray-600 mt-3">Official SDKs for JavaScript, Android, iOS, Unity, and more.</p>
+            <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold mt-4 group-hover:gap-2 transition-all">Browse SDKs <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          </div>
+
+          <!-- Card 8 -->
+          <div class="group rounded-2xl border border-gray-200 p-5 hover:shadow-md transition-shadow bg-white">
+            <div class="flex items-center gap-3">
+              <div class="rounded-xl p-2 border border-gray-200"><i data-lucide="globe" class="w-5 h-5"></i></div>
+              <h3 class="text-base font-semibold">Meta Horizon</h3>
+            </div>
+            <p class="text-sm text-gray-600 mt-3">Build for mixed reality devices and experiences.</p>
+            <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold mt-4 group-hover:gap-2 transition-all">Get Horizon tools <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Docs Section -->
-  <section class="bg-gray-50 border-t border-gray-200">
-    <div class="max-w-7xl mx-auto px-4 py-16">
-      <h2 class="text-2xl font-bold mb-8">Documentation</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <a href="#" class="block p-6 rounded-2xl border border-gray-200 bg-white hover:shadow-sm">
-          <i data-lucide="book-open" class="w-6 h-6 mb-4"></i>
-          <h3 class="font-semibold mb-2">Getting Started</h3>
-          <p class="text-sm text-gray-600">Quickstart guides to get you building in minutes.</p>
-        </a>
-        <a href="#" class="block p-6 rounded-2xl border border-gray-200 bg-white hover:shadow-sm">
-          <i data-lucide="terminal" class="w-6 h-6 mb-4"></i>
-          <h3 class="font-semibold mb-2">API Reference</h3>
-          <p class="text-sm text-gray-600">Detailed references for REST and Graph APIs.</p>
-        </a>
-        <a href="#" class="block p-6 rounded-2xl border border-gray-200 bg-white hover:shadow-sm">
-          <i data-lucide="layers" class="w-6 h-6 mb-4"></i>
-          <h3 class="font-semibold mb-2">SDKs</h3>
-          <p class="text-sm text-gray-600">Explore official SDKs and libraries in multiple languages.</p>
-        </a>
-      </div>
-    </div>
-  </section>
+    <!-- Docs spotlight -->
+    <section class="py-12 bg-gray-50 border-t border-gray-200">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="md:col-span-1">
+            <h2 class="text-2xl font-bold">Documentation</h2>
+            <p class="text-sm text-gray-600 mt-2">Quick links to get you building fast.</p>
+          </div>
+          <div class="md:col-span-2 grid sm:grid-cols-2 gap-4">
+            <a href="#" class="rounded-2xl border border-gray-200 bg-white p-5 hover:shadow-md transition">
+              <div class="flex items-center gap-3">
+                <i data-lucide="book-open" class="w-5 h-5"></i>
+                <div>
+                  <div class="font-semibold">Get started with our SDKs</div>
+                  <div class="text-sm text-gray-600">Install, initialize, and make your first API call.</div>
+                </div>
+              </div>
+            </a>
 
-  <!-- Tools Section -->
-  <section class="bg-white border-t border-gray-200">
-    <div class="max-w-7xl mx-auto px-4 py-16">
-      <h2 class="text-2xl font-bold mb-8">Tools</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="p-6 rounded-2xl border border-gray-200 bg-gray-50 hover:shadow-sm">
-          <i data-lucide="activity" class="w-6 h-6 mb-4"></i>
-          <h3 class="font-semibold mb-2">API Explorer</h3>
-          <p class="text-sm text-gray-600">Test APIs and preview responses in an interactive console.</p>
+            <a href="#" class="rounded-2xl border border-gray-200 bg-white p-5 hover:shadow-md transition">
+              <div class="flex items-center gap-3">
+                <i data-lucide="code-2" class="w-5 h-5"></i>
+                <div>
+                  <div class="font-semibold">App review & permissions</div>
+                  <div class="text-sm text-gray-600">Understand scopes, permissions, and verification.</div>
+                </div>
+              </div>
+            </a>
+
+            <a href="#" class="rounded-2xl border border-gray-200 bg-white p-5 hover:shadow-md transition">
+              <div class="flex items-center gap-3">
+                <i data-lucide="shield-check" class="w-5 h-5"></i>
+                <div>
+                  <div class="font-semibold">Security best practices</div>
+                  <div class="text-sm text-gray-600">Protect tokens, webhooks, and user data.</div>
+                </div>
+              </div>
+            </a>
+
+            <a href="#" class="rounded-2xl border border-gray-200 bg-white p-5 hover:shadow-md transition">
+              <div class="flex items-center gap-3">
+                <i data-lucide="server" class="w-5 h-5"></i>
+                <div>
+                  <div class="font-semibold">Webhooks quickstart</div>
+                  <div class="text-sm text-gray-600">Receive and verify real-time events.</div>
+                </div>
+              </div>
+            </a>
+          </div>
         </div>
-        <div class="p-6 rounded-2xl border border-gray-200 bg-gray-50 hover:shadow-sm">
-          <i data-lucide="settings" class="w-6 h-6 mb-4"></i>
-          <h3 class="font-semibold mb-2">App Dashboard</h3>
-          <p class="text-sm text-gray-600">Manage your apps, keys, and integrations from one place.</p>
+      </div>
+    </section>
+
+    <!-- Tools -->
+    <section class="py-12 bg-white border-t border-gray-200">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex items-baseline justify-between">
+          <h2 class="text-2xl font-bold">Developer Tools</h2>
+          <a href="#" class="text-sm font-semibold flex items-center gap-1">Browse tools <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
         </div>
-        <div class="p-6 rounded-2xl border border-gray-200 bg-gray-50 hover:shadow-sm">
-          <i data-lucide="lock" class="w-6 h-6 mb-4"></i>
-          <h3 class="font-semibold mb-2">Security Tools</h3>
-          <p class="text-sm text-gray-600">Audit logs, permissions, and controls for safe development.</p>
+
+        <div class="grid md:grid-cols-3 gap-5 mt-6">
+          <div class="group rounded-2xl border border-gray-200 p-5 hover:shadow-md transition-shadow bg-white">
+            <div class="flex items-center gap-3">
+              <div class="rounded-xl p-2 border border-gray-200"><i data-lucide="wrench" class="w-5 h-5"></i></div>
+              <h3 class="text-base font-semibold">App Dashboard</h3>
+            </div>
+            <p class="text-sm text-gray-600 mt-3">Configure products, secrets, roles, and review.</p>
+            <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold mt-4 group-hover:gap-2 transition-all">Open dashboard <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          </div>
+
+          <div class="group rounded-2xl border border-gray-200 p-5 hover:shadow-md transition-shadow bg-white">
+            <div class="flex items-center gap-3">
+              <div class="rounded-xl p-2 border border-gray-200"><i data-lucide="server" class="w-5 h-5"></i></div>
+              <h3 class="text-base font-semibold">Status</h3>
+            </div>
+            <p class="text-sm text-gray-600 mt-3">Real-time and historical uptime for APIs and services.</p>
+            <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold mt-4 group-hover:gap-2 transition-all">View status <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          </div>
+
+          <div class="group rounded-2xl border border-gray-200 p-5 hover:shadow-md transition-shadow bg-white">
+            <div class="flex items-center gap-3">
+              <div class="rounded-xl p-2 border border-gray-200"><i data-lucide="cpu" class="w-5 h-5"></i></div>
+              <h3 class="text-base font-semibold">Test Users & Data</h3>
+            </div>
+            <p class="text-sm text-gray-600 mt-3">Seed data, create test users, and validate flows.</p>
+            <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold mt-4 group-hover:gap-2 transition-all">Create test data <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Blog Section -->
-  <section class="bg-gray-50 border-t border-gray-200">
-    <div class="max-w-7xl mx-auto px-4 py-16">
-      <h2 class="text-2xl font-bold mb-8">From the Blog</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <a href="#" class="block p-6 rounded-2xl border border-gray-200 bg-white hover:shadow-sm">
-          <h3 class="font-semibold mb-2">Introducing Graph API vX.Y</h3>
-          <p class="text-sm text-gray-600">Learn about the latest updates and new webhook features.</p>
-        </a>
-        <a href="#" class="block p-6 rounded-2xl border border-gray-200 bg-white hover:shadow-sm">
-          <h3 class="font-semibold mb-2">Best Practices for Scaling Apps</h3>
-          <p class="text-sm text-gray-600">Tips and lessons learned from apps serving millions of users.</p>
-        </a>
-        <a href="#" class="block p-6 rounded-2xl border border-gray-200 bg-white hover:shadow-sm">
-          <h3 class="font-semibold mb-2">Security Checklist for Developers</h3>
-          <p class="text-sm text-gray-600">Practical steps to secure your integrations.</p>
-        </a>
+    <!-- Updates -->
+    <section class="py-12 bg-gray-50 border-t border-gray-200">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex items-baseline justify-between">
+          <h2 class="text-2xl font-bold">Latest updates</h2>
+          <a href="#" class="text-sm font-semibold flex items-center gap-1">Developer Blog <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-5 mt-6">
+          <div class="rounded-2xl border border-gray-200 bg-white p-5 hover:shadow-md transition">
+            <div class="text-xs text-gray-500">Aug 2025</div>
+            <a href="#" class="block mt-2 font-semibold leading-snug">Introducing vX.Y of the Graph API with improved rate limits</a>
+            <p class="text-sm text-gray-600 mt-2">Learn about performance improvements, new webhooks, and migration steps.</p>
+            <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold mt-4">Read more <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          </div>
+
+          <div class="rounded-2xl border border-gray-200 bg-white p-5 hover:shadow-md transition">
+            <div class="text-xs text-gray-500">Aug 2025</div>
+            <a href="#" class="block mt-2 font-semibold leading-snug">Introducing vX.Y of the Graph API with improved rate limits</a>
+            <p class="text-sm text-gray-600 mt-2">Learn about performance improvements, new webhooks, and migration steps.</p>
+            <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold mt-4">Read more <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          </div>
+
+          <div class="rounded-2xl border border-gray-200 bg-white p-5 hover:shadow-md transition">
+            <div class="text-xs text-gray-500">Aug 2025</div>
+            <a href="#" class="block mt-2 font-semibold leading-snug">Introducing vX.Y of the Graph API with improved rate limits</a>
+            <p class="text-sm text-gray-600 mt-2">Learn about performance improvements, new webhooks, and migration steps.</p>
+            <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold mt-4">Read more <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Status Section -->
-  <section class="bg-white border-t border-gray-200">
-    <div class="max-w-7xl mx-auto px-4 py-16 text-center">
-      <h2 class="text-2xl font-bold mb-4">Platform Status</h2>
-      <p class="text-gray-600 mb-6">Check the live status of our APIs and services.</p>
-      <a href="#" class="px-6 py-3 rounded-2xl bg-black text-white text-sm font-semibold hover:opacity-90 shadow">View Status Dashboard</a>
-    </div>
-  </section>
+    <!-- Support -->
+    <section class="py-12 bg-white border-t border-gray-200">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="grid md:grid-cols-3 gap-6 items-start">
+          <div>
+            <h2 class="text-2xl font-bold">Support</h2>
+            <p class="text-sm text-gray-600 mt-2">Find answers, get help, and connect with the community.</p>
+          </div>
 
-<!-- Footer using React-like icons structure -->
+          <div class="md:col-span-2 grid sm:grid-cols-2 gap-4">
+            <a href="#" class="rounded-2xl border border-gray-200 bg-white p-5 hover:shadow-md transition flex items-start gap-3">
+              <i data-lucide="life-buoy" class="w-5 h-5"></i>
+              <div>
+                <div class="font-semibold">Developer support</div>
+                <div class="text-sm text-gray-600">Submit a ticket or browse help articles.</div>
+              </div>
+            </a>
+
+            <a href="#" class="rounded-2xl border border-gray-200 bg-white p-5 hover:shadow-md transition flex items-start gap-3">
+              <i data-lucide="newspaper" class="w-5 h-5"></i>
+              <div>
+                <div class="font-semibold">Changelog</div>
+                <div class="text-sm text-gray-600">Breaking changes, deprecations, and releases.</div>
+              </div>
+            </a>
+
+            <a href="#" class="rounded-2xl border border-gray-200 bg-white p-5 hover:shadow-md transition flex items-start gap-3">
+              <i data-lucide="book-open" class="w-5 h-5"></i>
+              <div>
+                <div class="font-semibold">Community forum</div>
+                <div class="text-sm text-gray-600">Ask questions and share solutions.</div>
+              </div>
+            </a>
+
+            <a href="#" class="rounded-2xl border border-gray-200 bg-white p-5 hover:shadow-md transition flex items-start gap-3">
+              <i data-lucide="shield-check" class="w-5 h-5"></i>
+              <div>
+                <div class="font-semibold">Policies & review</div>
+                <div class="text-sm text-gray-600">Read platform terms and submission guidelines.</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-12 bg-gray-50 border-t border-gray-200">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="rounded-3xl border border-gray-200 bg-white p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <h3 class="text-xl font-bold">Stay in the loop</h3>
+            <p class="text-sm text-gray-600">Get product news, updates, and best practices.</p>
+          </div>
+          <div class="flex w-full md:w-auto gap-2">
+            <input type="email" placeholder="you@example.com" class="flex-1 md:w-80 px-3 py-2 rounded-xl border border-gray-200" />
+            <button class="px-4 py-2 rounded-2xl bg-black text-white text-sm font-semibold hover:opacity-90 shadow">Subscribe</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
   <footer class="bg-white border-t border-gray-200">
     <div class="max-w-7xl mx-auto px-4 py-10">
       <div class="grid md:grid-cols-5 gap-8">
         <div class="md:col-span-2">
           <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-xl bg-black flex items-center justify-center text-white font-bold">E</div>
-            <span class="text-lg font-bold tracking-tight">SAAS Site</span>
+            <div class="w-8 h-8 rounded-xl bg-black flex items-center justify-center text-white font-bold">D</div>
+            <span class="text-lg font-bold tracking-tight">DevPortal</span>
           </div>
-          <p class="text-sm text-gray-600 mt-3 max-w-sm">A clean, saas-first template inspired by Elevate for Everyone. </p>
+          <p class="text-sm text-gray-600 mt-3 max-w-sm">A clean, developer-first template inspired by Meta for Developers. Replace names, links, and content with your own.</p>
+
           <div class="flex items-center gap-3 mt-4">
-        <a href="#"><i data-lucide="twitter" class="w-4 h-4"></i></a>
-        <a href="#"><i data-lucide="facebook" class="w-4 h-4"></i></a>
-        <a href="#"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
-        <a href="#"><i data-lucide="youtube" class="w-4 h-4"></i></a>
-        <a href="#"><i data-lucide="github" class="w-4 h-4"></i></a>
-      </div>
+            <a href="#" aria-label="Twitter" class="p-2 rounded-xl border border-gray-200 hover:bg-gray-50"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+            <a href="#" aria-label="Facebook" class="p-2 rounded-xl border border-gray-200 hover:bg-gray-50"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+            <a href="#" aria-label="LinkedIn" class="p-2 rounded-xl border border-gray-200 hover:bg-gray-50"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+            <a href="#" aria-label="YouTube" class="p-2 rounded-xl border border-gray-200 hover:bg-gray-50"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+            <a href="#" aria-label="GitHub" class="p-2 rounded-xl border border-gray-200 hover:bg-gray-50"><i data-lucide="github" class="w-4 h-4"></i></a>
+          </div>
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-3 gap-8 md:col-span-3">
           <div class="space-y-3">
-            <h4 class="text-sm font-semibold">Build with Elevate</h4>
+            <h4 class="text-sm font-semibold">Build with Meta</h4>
             <div class="flex flex-col gap-2">
-              <a href="#" class="text-gray-600 hover:text-gray-900">AI</a>
-              <a href="#" class="text-gray-600 hover:text-gray-900">Meta Horizon OS</a>
-              <a href="#" class="text-gray-600 hover:text-gray-900">Social technologies</a>
+              <a href="#" class="text-sm text-gray-600 hover:text-gray-900">AI</a>
+              <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Meta Horizon OS</a>
+              <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Social technologies</a>
             </div>
           </div>
+
           <div class="space-y-3">
             <h4 class="text-sm font-semibold">News & Docs</h4>
             <div class="flex flex-col gap-2">
-              <a href="#" class="text-gray-600 hover:text-gray-900">Blog</a>
-              <a href="#" class="text-gray-600 hover:text-gray-900">Success stories</a>
-              <a href="#" class="text-gray-600 hover:text-gray-900">Docs</a>
+              <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Blog</a>
+              <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Success stories</a>
+              <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Docs</a>
             </div>
           </div>
+
           <div class="space-y-3">
             <h4 class="text-sm font-semibold">Support</h4>
             <div class="flex flex-col gap-2">
-              <a href="#" class="text-gray-600 hover:text-gray-900">Developer support</a>
-              <a href="#" class="text-gray-600 hover:text-gray-900">Bug tool</a>
-              <a href="#" class="text-gray-600 hover:text-gray-900">Platform status</a>
-              <a href="#" class="text-gray-600 hover:text-gray-900">Community forum</a>
+              <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Developer support</a>
+              <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Bug tool</a>
+              <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Platform status</a>
+              <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Community forum</a>
             </div>
           </div>
+
           <div class="space-y-3">
             <h4 class="text-sm font-semibold">Policies</h4>
             <div class="flex flex-col gap-2">
-              <a href="#" class="text-gray-600 hover:text-gray-900">Responsible initiatives</a>
-              <a href="#" class="text-gray-600 hover:text-gray-900">Platform terms</a>
-              <a href="#" class="text-gray-600 hover:text-gray-900">Developer policies</a>
+              <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Responsible initiatives</a>
+              <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Platform terms</a>
+              <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Developer policies</a>
             </div>
           </div>
+
           <div class="space-y-3">
             <h4 class="text-sm font-semibold">Company</h4>
             <div class="flex flex-col gap-2">
-              <a href="#" class="text-gray-600 hover:text-gray-900">About</a>
-              <a href="#" class="text-gray-600 hover:text-gray-900">Careers</a>
-              <a href="#" class="text-gray-600 hover:text-gray-900">Contact</a>
+              <a href="#" class="text-sm text-gray-600 hover:text-gray-900">About</a>
+              <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Careers</a>
+              <a href="#" class="text-sm text-gray-600 hover:text-gray-900">Contact</a>
             </div>
           </div>
         </div>
@@ -271,10 +484,11 @@
 
       <div class="border-t border-gray-200 mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-gray-600">
         <div class="flex items-center gap-2">
-          <span>© 2025 Elevate</span>
+          <span id="year">© 2025 DevPortal</span>
           <span>•</span>
           <a href="#" class="hover:text-gray-900">All rights reserved</a>
         </div>
+
         <div class="flex items-center gap-4">
           <a href="#" class="hover:text-gray-900">Privacy</a>
           <a href="#" class="hover:text-gray-900">Terms</a>
@@ -284,5 +498,40 @@
     </div>
   </footer>
 
+  <!-- Scripts: mobile toggle + lucide init + year -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // render lucide icons
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        lucide.createIcons();
+      }
+
+      // mobile menu toggle
+      const openBtn = document.getElementById('open-mobile');
+      const closeBtn = document.getElementById('close-mobile');
+      const panel = document.getElementById('mobile-panel');
+
+      function openPanel() { panel.classList.remove('hidden'); panel.classList.add('block'); openBtn.setAttribute('aria-expanded','true'); }
+      function closePanel() { panel.classList.remove('block'); panel.classList.add('hidden'); openBtn.setAttribute('aria-expanded','false'); }
+
+      if (openBtn) openBtn.addEventListener('click', openPanel);
+      if (closeBtn) closeBtn.addEventListener('click', closePanel);
+
+      // close panel when clicking outside (optional improvement)
+      document.addEventListener('click', function(e){
+        if (!panel.classList.contains('hidden')) {
+          const isClickInside = panel.contains(e.target) || openBtn.contains(e.target);
+          if (!isClickInside) closePanel();
+        }
+      });
+
+      // inject current year exactly like new Date().getFullYear()
+      const yearSpan = document.getElementById('year');
+      if (yearSpan) {
+        const y = new Date().getFullYear();
+        yearSpan.textContent = `© ${y} DevPortal`;
+      }
+    });
+  </script>
 </body>
 </html>
