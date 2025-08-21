@@ -119,13 +119,42 @@
           </div>
 
           <div class="relative">
-            <div class="aspect-[4/3] rounded-3xl bg-gradient-to-br from-gray-100 to-gray-200 border border-gray-200 shadow-inner"></div>
+            <div class="aspect-[4/3] rounded-3xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 border border-gray-200 shadow-inner">
+              <img id="hero-image" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80" alt="Tech illustration" class="w-full h-full object-cover object-center" onerror="this.style.display='none'; document.getElementById('hero-svg').style.display='block'" />
+
+              <!-- SVG fallback shown if external image fails to load -->
+              <svg id="hero-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" class="w-full h-full" style="display:none;" aria-hidden="true">
+                <defs>
+                  <linearGradient id="bgGrad" x1="0" x2="1">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="100%" stop-color="#eef2ff"/>
+                  </linearGradient>
+                </defs>
+                <rect width="800" height="600" fill="url(#bgGrad)" />
+                <g transform="translate(80,60)">
+                  <rect x="0" y="0" width="640" height="420" rx="20" fill="#fff" stroke="#e6e9ff" />
+                  <g stroke="#c7d2fe" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.9">
+                    <path d="M40 60 H560"/>
+                    <path d="M40 140 H320 V300 H520"/>
+                    <path d="M120 220 V360 H520"/>
+                  </g>
+                  <circle cx="80" cy="80" r="10" fill="#6366f1"/>
+                  <circle cx="560" cy="80" r="10" fill="#6366f1"/>
+                  <circle cx="320" cy="300" r="10" fill="#6366f1"/>
+                  <g fill="#94a3b8" opacity="0.95">
+                    <rect x="60" y="340" width="120" height="70" rx="10" />
+                    <rect x="200" y="340" width="140" height="70" rx="10" />
+                    <rect x="360" y="340" width="220" height="70" rx="10" />
+                  </g>
+                </g>
+              </svg>
+            </div>
 
             <div class="absolute -bottom-4 -right-4 bg-white border border-gray-200 rounded-2xl p-4 shadow-md flex items-center gap-3">
               <div class="rounded-xl p-2 border border-gray-200"><i data-lucide="code-2" class="w-5 h-5"></i></div>
               <div>
                 <div class="text-sm font-semibold">Kloi AI v0.1.1</div>
-                <div class="text-xs text-gray-600">Now with improved webhooks</div>
+                <div class="text-xs text-gray-600">Now with improved inhance ability</div>
               </div>
             </div>
           </div>
